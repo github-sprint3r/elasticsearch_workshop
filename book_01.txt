@@ -109,3 +109,20 @@ GET /store/book/_search
   }
 }
 
+
+GET /store/book/_search
+{
+  "query": {
+    "match_phrase": {
+      "_all": "clean"
+    }
+  },
+  "aggs": {
+    "all_tags": {
+      "terms": {
+        "field": "tag"
+      }
+    }
+  }
+}
+
