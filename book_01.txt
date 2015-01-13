@@ -40,3 +40,43 @@ GET /store/book/_search
             }
         }
 }
+
+GET /store/book/_search
+{
+        "query" : {
+            "match" : {
+                "_all" : "Elasticsearch"
+            }
+        } 
+}
+
+
+
+GET /store/book/_search
+{
+        "query" : {
+            "filtered" : {
+                "filter" : {
+                    "range" : {
+                      "page":{"gt":100} 
+                      
+                    }
+                },
+                "query" : {
+                    "match" : {
+                        "title" : "Elasticsearch"
+                    } 
+                }
+            } 
+        }
+}
+
+
+GET /store/book/_search
+{
+        "query" : {
+            "match_phrase" : {
+                "_all" : "open source"
+            }
+} }
+
