@@ -1,0 +1,24 @@
+PUT /store/book/1
+    {
+        "title" : "Elasticsearch: The Definitive Guide",
+        "author_name" :  ["Clinton Gormley", "Zachary Tong"],
+        "isbn-13" :  "978-1449358549",
+        "isbn-10" :  "1449358543",
+        "price" : 44.30,
+        "page" : 724,
+        "description" : "A Distributed Real-Time Search and Analytics Engine",
+        "detail" : "Learn how to use Elasticsearch, an open source, distributed, RESTful search engine built on top of Apache Lucene. Each chapter in this book tackles a particular facet of Elasticsearch with separate sections for beginners more advanced programmers. If you’re a beginner, advanced techniques are not required reading, but you can revisit them once you have a solid understanding of the basics."
+}
+
+
+PUT /store/book/2
+    {
+        "title" : "Elasticsearch: The Definitive Guide",
+        "author_name" :  ["Clinton Gormley", "Zachary Tong"],
+        "isbn-13" :  "978-1449358549",
+        "isbn-10" :  "1449358543",
+        "price" : 44.30,
+        "page" : 724,
+        "description" : "A Distributed Real-Time Search and Analytics Engine",
+        "detail" : "Learn how to use Elasticsearch, an open source, distributed, RESTful search engine built on top of Apache Lucene. Each chapter in this book tackles a particular facet of Elasticsearch with separate sections for beginners more advanced programmers. If you’re a beginner, advanced techniques are not required reading, but you can revisit them once you have a solid understanding of the basics."
+}
