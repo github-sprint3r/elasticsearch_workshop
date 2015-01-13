@@ -13,12 +13,30 @@ PUT /store/book/1
 
 PUT /store/book/2
     {
-        "title" : "Elasticsearch: The Definitive Guide",
-        "author_name" :  ["Clinton Gormley", "Zachary Tong"],
-        "isbn-13" :  "978-1449358549",
-        "isbn-10" :  "1449358543",
-        "price" : 44.30,
-        "page" : 724,
-        "description" : "A Distributed Real-Time Search and Analytics Engine",
-        "detail" : "Learn how to use Elasticsearch, an open source, distributed, RESTful search engine built on top of Apache Lucene. Each chapter in this book tackles a particular facet of Elasticsearch with separate sections for beginners more advanced programmers. If you’re a beginner, advanced techniques are not required reading, but you can revisit them once you have a solid understanding of the basics."
+        "title" : "Clean Code: A Handbook of Agile Software Craftsmanship",
+        "author_name" :  [" Robert C. Martin"],
+        "isbn-13" :  "000-0132350882",
+        "isbn-10" :  "0132350882",
+        "price" : 34.16,
+        "page" : 464,
+        "description" : "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees.",
+        "detail" : "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn’t have to be that way."
+}
+
+
+GET /store/book/1
+
+GET /store/book/2
+
+GET /store/book/_search
+
+GET /store/book/_search?q=title:Elasticsearch
+
+GET /store/book/_search
+{
+        "query" : {
+            "match" : {
+                "title" : "Elasticsearch"
+            }
+        }
 }
