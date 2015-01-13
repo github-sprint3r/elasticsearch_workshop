@@ -2,6 +2,7 @@ PUT /store/book/1
     {
         "title" : "Elasticsearch: The Definitive Guide",
         "author_name" :  ["Clinton Gormley", "Zachary Tong"],
+        "tag" : ["search", "computer"],
         "isbn-13" :  "978-1449358549",
         "isbn-10" :  "1449358543",
         "price" : 44.30,
@@ -15,6 +16,7 @@ PUT /store/book/2
     {
         "title" : "Clean Code: A Handbook of Agile Software Craftsmanship",
         "author_name" :  [" Robert C. Martin"],
+        "tag" : ["development", "computer"],
         "isbn-13" :  "000-0132350882",
         "isbn-10" :  "0132350882",
         "price" : 34.16,
@@ -58,7 +60,7 @@ GET /store/book/_search
             "filtered" : {
                 "filter" : {
                     "range" : {
-                      "page":{"gt":100} 
+                      "page":{"gt":500} 
                       
                     }
                 },
@@ -79,4 +81,31 @@ GET /store/book/_search
                 "_all" : "open source"
             }
 } }
+
+
+GET /store/book/_search
+{
+        "query" : {
+            "match_phrase" : {
+                "_all" : "clean"
+        }},
+        "highlight": {
+            "fields" : {
+                "detail" : {},
+                "title" : {}
+            }
+        }
+} 
+
+
+GET /store/book/_search
+{
+  "aggs": {
+    "all_tags": {
+      "terms": {
+        "field": "tag"
+      }
+    }
+  }
+}
 
