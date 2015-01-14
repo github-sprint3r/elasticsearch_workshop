@@ -30,4 +30,18 @@ PUT /store/book/123
 }
 
 
+//Problem duplicate ID
+PUT /store/book/123?op_type=create
+{
+        "title" : "New",
+        "author_name" :  ["user1", "user2"],
+        "tag" : ["new", "book"]
+}
+
+PUT /store/book/123/_create
+{
+        "title" : "New",
+        "author_name" :  ["user1", "user2"],
+        "tag" : ["new", "book"]
+}
 
