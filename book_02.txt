@@ -45,6 +45,16 @@ POST /store/book/1/_update
 }
 
 
+POST /store/book/1/_update
+{
+       "script" : "ctx._source.tags+=new_tag",
+       "params" : {
+          "new_tag" : "search"
+       }
+}
+
+
+
 //Problem duplicate ID
 PUT /store/book/123?op_type=create
 {
