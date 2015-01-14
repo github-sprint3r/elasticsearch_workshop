@@ -47,10 +47,29 @@ POST /store/book/1/_update
 
 POST /store/book/1/_update
 {
-       "script" : "ctx._source.tags+=new_tag",
+       "script" : "ctx._source.tag+=new_tag",
        "params" : {
           "new_tag" : "search"
        }
+}
+
+//Partial update with not-existing field
+POST /store/book/2/_update     => BUG !!!!
+{
+      "script": "ctx._source.views+=1",
+      "upsert": {
+            "views": 1
+      }
+}
+
+//Resolve https://gist.github.com/dakrone/432f2800eb83939114e5
+
+POST /store/book/2/_update
+{
+    "script": "if (!ctx._source.views) {ctx._source.views = 1};ctx._source.views += views",
+    "params": {
+        "views": 5
+    }
 }
 
 
