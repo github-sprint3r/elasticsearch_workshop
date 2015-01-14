@@ -29,6 +29,21 @@ PUT /store/book/123
         "tag" : ["update", "book"]
 }
 
+//Partial update document
+POST /store/book/1/_update
+{
+       "doc" : {
+          "title" : "partial update",
+          "tag" : [ "test", "computer" ],
+          "views": 0
+} }
+
+//Partial update with script
+POST /store/book/1/_update
+{
+       "script" : "ctx._source.views+=1"
+}
+
 
 //Problem duplicate ID
 PUT /store/book/123?op_type=create
