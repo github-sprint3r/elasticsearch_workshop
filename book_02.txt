@@ -1,0 +1,33 @@
+//Automatic generate ID of document
+POST /store/book/
+{
+        "title" : "Scrum: a Breathtakingly Brief and Agile Introduction",
+        "author_name" :  ["Chris Sims", "Hillary Louise Johnson"],
+        "tag" : ["scrum", "agile","computer"],
+        "asin" :  "B007P5N8D4",
+        "price" : 2.99,
+        "page" : 54,
+        "description" : "A pocket-sized overview of roles, artifacts and the sprint cycle, adapted from the bestsellerThe Elements of Scrum by Chris Sims & Hillary Louise Johnson ",
+        "detail" : "A pocket-sized overview of roles, artifacts and the sprint cycle, adapted from the bestsellerThe Elements of Scrum by Chris Sims & Hillary Louise Johnson"
+}
+
+
+//Retrieving part of a document
+ GET /store/book/1?_source=title,description
+
+
+//Check existing document
+curl -i -XHEAD http://localhost:9200/store/book/1
+
+curl -i -XHEAD http://localhost:9200/store/book/100
+
+//Update whole document
+PUT /store/book/123
+{
+        "title" : "Update",
+        "author_name" :  ["user1", "user2"],
+        "tag" : ["update", "book"]
+}
+
+
+
