@@ -1,0 +1,39 @@
+//Retrieve multiple documents
+GET /_mget
+{
+  "docs": [
+    {
+      "_index": "store",
+      "_type": "book",
+      "_id": 1,
+      "_source": [
+        "title",
+        "views"
+      ]
+    },
+    {
+      "_index": "store",
+      "_type": "book",
+      "_id": 2,
+      "_source": "title"
+    }
+  ]
+}
+
+
+GET /store/book/_mget
+{
+  "docs": [
+    {
+      "_id": 1,
+      "_source": [
+        "title",
+        "views"
+      ]
+    },
+    {
+      "_id": 2,
+      "_source": "title"
+    }
+  ]
+}
