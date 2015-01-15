@@ -77,6 +77,16 @@ POST /store/book/_bulk
 { "doc" : {"title" : "My updated book"} }
 
 
+//Add log with Bulk api
+POST /store/log/_bulk
+{ "create": { "_id": "1" }}
+{ "code":"200", "message":"success" }
+{ "update": { "_id": "2", "_retry_on_conflict" : 3}}
+{ "doc" : {"code" : "404", "message" : "not found"}}
+{ "create": { "_id": "3" }}
+{ "code":"200", "message":"success" }
+{ "update": { "_id": "4", "_retry_on_conflict" : 3}}
+{ "doc" : {"code" : "404", "message" : "not found"}}
 
 
 
