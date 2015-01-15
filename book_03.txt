@@ -26,10 +26,7 @@ GET /store/book/_mget
   "docs": [
     {
       "_id": 1,
-      "_source": [
-        "title",
-        "views"
-      ]
+      "_source": [ "title","views"]
     },
     {
       "_id": 2,
@@ -37,3 +34,53 @@ GET /store/book/_mget
     }
   ]
 }
+
+
+GET /store/book/_mget
+{
+  "ids": [1,2]
+}
+
+
+//Bulk API 
+
+
+//Create new document
+POST /_bulk
+{"create":{"_index":"store","_type":"book","_id":"1001"}}
+{"title":"new book 1000", "description":"my new book"}
+
+//Index document + auto ID
+POST /_bulk
+{"index":{"_index":"store","_type":"book"}}
+{"title":"new book xxx", "description":"my new book with auto id"}
+
+
+
+POST /_bulk
+{ "delete": { "_index": "store", "_type": "book", "_id": "1001" }}
+{ "create": { "_index": "store", "_type": "book", "_id": "1001" }}
+{ "title":    "My new book" }
+{ "index":  { "_index": "store", "_type": "book" }}
+{ "title":    "My second book" }
+{ "update": { "_index": "store", "_type": "book", "_id": "1001", "_retry_on_conflict" : 3} }
+{ "doc" : {"title" : "My updated book"} }
+
+
+POST /store/book/_bulk
+{ "delete": { "_id": "1001" }}
+{ "create": { "_id": "1001" }}
+{ "title":    "My new book" }
+{ "index":  {  }}
+{ "title":    "My second book" }
+{ "update": { "_id": "1001", "_retry_on_conflict" : 3} }
+{ "doc" : {"title" : "My updated book"} }
+
+
+
+
+
+
+
+
+
