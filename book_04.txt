@@ -1,0 +1,53 @@
+//Index new documents
+
+PUT /store/book/1
+    {
+        "title" : "Elasticsearch: The Definitive Guide",
+        "published_date" : "2015-01-15"
+}
+
+PUT /store/book/2
+    {
+        "title" : "Elasticsearch: The Definitive Guide",
+        "published_date" : "2015-01-16"
+}
+
+PUT /store/book/3
+    {
+        "title" : "Elasticsearch: The Definitive Guide",
+        "published_date" : "2015-01-17"
+}
+
+//Search data
+GET /store/book/_search?q=2015
+GET /store/book/_search?q=2015-01-15
+GET /store/book/_search?q=published_date:2015-01-15
+GET /store/book/_search?q=published_date:2015
+
+//Mapping of book
+GET /store/_mapping/book
+
+
+
+//Analyze
+
+//Standard analyzer
+GET /_analyze?analyzer=standard&text=Set the shape to semi-transparent by calling set_trans(5)
+
+//Simple analyzer
+GET /_analyze?analyzer=simple&text=Set the shape to semi-transparent by calling set_trans(5)
+
+//Whitespace analyzer
+GET /_analyze?analyzer=whitespace&text=Set the shape to semi-transparent by calling set_trans(5)
+
+
+//Language analyzer
+GET /_analyze?analyzer=english&text=Set the shape to semi-transparent by calling set_trans(5)
+
+
+
+
+
+
+
+
