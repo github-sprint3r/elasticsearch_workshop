@@ -45,6 +45,10 @@ GET /_analyze?analyzer=whitespace&text=Set the shape to semi-transparent by call
 GET /_analyze?analyzer=english&text=Set the shape to semi-transparent by calling set_trans(5)
 
 
+//Thai analyzer
+http://localhost:9200/store/_analyze?analyzer=thai&text=สวัสดีประเทศไทย
+
+
 
 
 
