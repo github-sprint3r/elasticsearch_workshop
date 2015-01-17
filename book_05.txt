@@ -63,6 +63,29 @@ PUT /store
   }
 }
 
+//Add default of search and index analyzer
+PUT /store
+{
+  "mappings": {
+    "book": {
+      "index_analyzer": "standard", 
+      "search_analyzer": "standard", 
+      "properties": {
+        "title": {
+          "type": "string",
+          "analyzer": "thai"
+        },
+        "published_date": {
+          "type": "date"
+        }
+      }
+    }
+  }
+}
+
 
 //Testing thai analyzer in browser
 http://localhost:9200/store/_analyze?field=title&text=สวัสดีประเทศไทย&pretty
+
+
+
