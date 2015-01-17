@@ -1,0 +1,64 @@
+//Mapping
+
+//Get mapping of book
+GET /store/_mapping/book/
+
+
+//Update mapping
+
+//Index and Analyzer
+
+DELETE /store
+
+PUT /store
+{
+  "mappings": {
+    "book": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "analyzer": "english"
+        },
+        "published_date": {
+          "type": "date"
+        }
+      }
+    }
+  }
+}
+
+
+//Update mapping
+PUT /store/_mapping/book
+{
+  "properties": {
+    "tag": {
+      "type": "string",
+      "index": "not_analyzed"
+    }
+  }
+}
+
+
+//Testing mapping
+GET store/_analyze?field=title&text=i love you
+GET store/_analyze?field=tag&text=i love you
+
+
+//Create mapping with Thai analyzer
+PUT /store
+{
+  "mappings": {
+    "book": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "analyzer": "thai"
+        },
+        "published_date": {
+          "type": "date"
+        }
+      }
+    }
+  }
+}
