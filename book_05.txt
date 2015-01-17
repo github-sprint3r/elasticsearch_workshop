@@ -62,3 +62,7 @@ PUT /store
     }
   }
 }
+
+
+//Testing thai analyzer in browser
+http://localhost:9200/store/_analyze?field=title&text=สวัสดีประเทศไทย&pretty
