@@ -1,5 +1,8 @@
 //Mapping
 
+//Create Index
+PUT /store
+
 //Get mapping of book
 GET /store/_mapping/book/
 
@@ -81,7 +84,7 @@ PUT /store
       }
     }
   }
-}
+}s
 
 
 //Testing thai analyzer in browser
