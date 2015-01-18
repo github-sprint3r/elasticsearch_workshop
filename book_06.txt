@@ -1,0 +1,53 @@
+//Search with a single term
+GET /store/book/_search
+{
+  "query": {
+    "term": {
+      "title": {
+        "value": "elasticsearch"
+      }
+    }
+  }
+}
+
+
+//Search with multiple term
+GET /store/book/_search
+{
+  "query": {
+    "terms": {
+      "title": [
+        "search",
+        "the"
+      ]
+    }
+  }
+}
+
+//Search with multiple filter
+GET /store/book/_search
+{
+  "query": {
+    "filtered": {
+      "filter": {
+        "term": {
+          "title": "elasticsearch"
+        }
+      },
+      "query": {
+        "term": {
+          "published_date": "2015-01-16"
+        }
+      }
+    }
+  }
+}
+
+
+//Paging
+GET /store/book/_search
+{
+  "from": 0,
+  "size": 2
+}
+
