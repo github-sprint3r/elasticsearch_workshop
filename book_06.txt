@@ -124,6 +124,23 @@ GET /store/book/_search
   ]
 }
 
+//Multiple sorting
+GET /store/book/_search
+{
+  "sort": [
+    {
+      "published_date": {
+        "order": "desc"
+      }
+    },
+    {
+      "price": {
+        "order": "asc"
+      }
+    }
+  ]
+}
+
 
 GET /store/book/_search
 {
