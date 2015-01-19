@@ -51,3 +51,38 @@ GET /store/book/_search
   "size": 2
 }
 
+
+//Sorting
+GET /store/book/_search
+{
+"sort": [
+    {
+      "published_date": {
+        "order": "desc"
+      }
+    }
+  ]
+}
+
+
+GET /store/book/_search
+{
+  "from": 0,
+  "query": {
+    "filtered": {
+      "filter": {
+        "term": {
+          "title": "elasticsearch"
+        }
+      }
+    }
+  },
+  "sort": [
+    {
+      "published_date": {
+        "order": "asc"
+      }
+    }
+  ]
+}
+
