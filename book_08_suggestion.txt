@@ -1,4 +1,4 @@
-//Search as  you type
+1. Search as  you type
 
 //Create index
 PUT /suggestion
@@ -47,3 +47,7 @@ POST /suggestion/_suggest
     }
   }
 }
+
+
+2. NGram
+
