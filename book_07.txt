@@ -114,4 +114,43 @@ GET /store/book/_search?search_type=count
 }
 
 
+//Order data by category
+GET /store/book/_search?search_type=count
+{
+  "aggs": {
+    "all_book_title": {
+      "terms": {
+        "field": "category",
+        "order": {
+          "_count": "asc"
+        }
+      }
+    }
+  }
+}
+
+
+//Multiple aggregation (bucket + metric)
+GET /store/book/_search?search_type=count
+{
+  "aggs": {
+    "all_book_title": {
+      "terms": {
+        "field": "category",
+        "order": {
+          "_count": "asc"
+        }
+      },
+      "aggs": {
+        "price_stat": {
+          "stats": {
+            "field" : "price"
+          }
+        }
+      }
+    }
+  }
+}
+
+
 
