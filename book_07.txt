@@ -1,1 +1,40 @@
-//Aggregation
+//Aggregation  (data + aggregation) with term aggregation
+GET /store/book/_search
+{
+  "aggs": {
+    "all_book_title": {
+      "terms": {
+        "field": "category"
+      }
+    }
+  }
+}
+
+
+//Show only aggregation section
+GET /store/book/_search?search_type=count
+{
+  "aggs": {
+    "all_book_title": {
+      "terms": {
+        "field": "category"
+      }
+    }
+  }
+}
+
+
+//Stats aggregation
+GET /store/book/_search?search_type=count
+{
+  "aggs": {
+    "all_book_title": {
+      "stats": {
+        "field": "price"
+      }
+    }
+  }
+}
+
+
+
