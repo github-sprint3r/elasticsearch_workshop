@@ -1,0 +1,21 @@
+//Delete index
+DELETE /store
+
+//Create index
+PUT /store
+
+//Create mapping
+PUT /store/_mapping/book
+{
+  "properties" : {
+    "category" : {
+      "type" :    "string",
+      "index":    "not_analyzed"
+    }
+  }
+}
+
+//Create 5 documents
+
+//Test mapping
+GET /store/_analyze?field=category&text=test category
