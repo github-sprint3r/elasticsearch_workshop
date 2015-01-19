@@ -37,4 +37,15 @@ GET /store/book/_search?search_type=count
 }
 
 
+GET /store/book/_search?search_type=count
+{
+  "aggs": {
+    "all_book_title": {
+      "stats": {
+        "script": "doc['price'].value"
+      }
+    }
+  }
+}
+
 
