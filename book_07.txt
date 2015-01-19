@@ -90,3 +90,28 @@ GET /store/book/_search?search_type=count
 }
 
 
+//Price range
+GET /store/book/_search?search_type=count
+{
+  "aggs": {
+    "price_range": {
+      "range": {
+        "field": "price",
+        "ranges": [
+          {
+            "from": 0, "to": 10
+          },
+          {
+            "from": 11, "to": 20
+          },
+          {
+            "from": 21, "to": 50
+          }
+        ]
+      }
+    }
+  }
+}
+
+
+
