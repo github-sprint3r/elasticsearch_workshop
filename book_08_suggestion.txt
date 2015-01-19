@@ -42,7 +42,8 @@ POST /suggestion/_suggest
   "title" : {
     "text" : "elas",
     "completion" : {
-      "field" : "title_suggest"
+      "field" : "title_suggest",
+      "size" : 10
     }
   }
 }
