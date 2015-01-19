@@ -1,0 +1,48 @@
+//Search as  you type
+
+//Create index
+PUT /suggestion
+{
+  "mappings": {
+    "book": {
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "title_suggest": {
+          "type": "completion"
+        }
+      }
+    }
+  }
+}
+
+//Create dicument
+PUT  /suggestion/book/1
+{
+	"title" : "Elasticsearch book one",
+	"title_suggest" : "Elasticsearch book one"
+}
+
+PUT  /suggestion/book/2
+{
+	"title" : "Elasticsearch book two",
+	"title_suggest" : "Elasticsearch book two"
+}
+
+PUT  /suggestion/book/3
+{
+	"title" : "Elasticsearch book three",
+	"title_suggest" : "Elasticsearch book three"
+}
+
+//Query suggestion
+POST /suggestion/_suggest
+{
+  "title" : {
+    "text" : "elas",
+    "completion" : {
+      "field" : "title_suggest"
+    }
+  }
+}
