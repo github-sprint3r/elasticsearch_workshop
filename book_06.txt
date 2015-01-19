@@ -1,3 +1,12 @@
+//Preparing index
+DELETE /store
+PUT /store
+
+//Preparing data example
+
+
+
+
 //Search with a single term
 GET /store/book/_search
 {
@@ -42,6 +51,57 @@ GET /store/book/_search
     }
   }
 }
+
+//Query with range
+GET /store/book/_search
+{
+  "query": {
+    "range": {
+      "price": {
+        "gte": 10,
+        "lte": 21
+      }
+    }
+  }
+}
+
+
+//Filter with range
+GET /store/book/_search
+{
+  "query": {
+    "filtered": {
+      "query": {
+        "match": {
+          "category": "Online Searching"
+        }
+      },
+      "filter": {
+        "and": [
+          {
+            "term": {
+              "title": "elasticsearch"
+            }
+          },
+          {
+            "term": {
+              "published_date": "2015-01-15"
+            }
+          },
+          {
+            "range": {
+              "price": {
+                "gte": 10,
+                "lte": 25
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+
 
 
 //Paging
