@@ -77,4 +77,16 @@ GET /store/book/_search?search_type=count
   }
 }
 
+//Missing aggregation
+GET /store/book/_search?search_type=count
+{
+  "aggs": {
+    "missing_field_tags": {
+      "missing": {
+        "field": "tags"
+      }
+    }
+  }
+}
+
 
