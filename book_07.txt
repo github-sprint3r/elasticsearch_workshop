@@ -37,12 +37,41 @@ GET /store/book/_search?search_type=count
 }
 
 
+//Stats aggregation :: price stat
+GET /store/book/_search?search_type=count
+{
+  "aggs": {
+    "price_stat": {
+      "stats": {
+        "field": "price"
+      }
+    }
+  }
+}
+
+GET /store/book/_search?search_type=count
+{
+  "aggs": {
+    "price_stat": {
+      "stats": {
+        "script": "doc['price'].value"
+      }
+    }
+  }
+}
+
+//Multiple aggregation type
 GET /store/book/_search?search_type=count
 {
   "aggs": {
     "all_book_title": {
+      "terms": {
+        "field": "category"
+      }
+    },
+    "price_stat": {
       "stats": {
-        "script": "doc['price'].value"
+        "field": "price"
       }
     }
   }
