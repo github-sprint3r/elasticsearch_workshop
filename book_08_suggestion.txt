@@ -124,6 +124,60 @@ PUT /suggestion
   }
 }
 
+//Create documents
+PUT /suggestion/book/1
+{
+  "title": "Elasticsearch book one",
+  "title_suggest": {
+    "input": [
+      "Elasticsearch book one"
+    ],
+    "payload": {
+      "product_id": 1
+    }
+  }
+}
+
+
+PUT /suggestion/book/2
+{
+  "title": "Elasticsearch book two",
+  "title_suggest": {
+    "input": [
+      "Elasticsearch book two"
+    ],
+    "payload": {
+      "product_id": 2
+    }
+  }
+}
+
+PUT /suggestion/book/3
+{
+  "title": "Elasticsearch book three",
+  "title_suggest": {
+    "input": [
+      "Elasticsearch book three"
+    ],
+    "payload": {
+      "product_id": 3
+    }
+  }
+}
+
+
+//Query suggestion
+POST /suggestion/_suggest
+{
+  "title" : {
+    "text" : "elas",
+    "completion" : {
+      "field" : "title_suggest",
+      "size" : 10
+    }
+  }
+}
+
 
 
 
