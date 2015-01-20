@@ -49,5 +49,17 @@ POST /suggestion/_suggest
 }
 
 
-2. NGram
+//Solution :: multiple inputs
+PUT /suggestion/book/1
+{
+  "title": "Elasticsearch book one",
+  "title_suggest": {
+    "input": [
+      "Elasticsearch book one",
+      "Book elasticsearch"
+    ]
+  }
+}
+
+
 
