@@ -17,7 +17,7 @@ PUT /suggestion
   }
 }
 
-//Create dicument
+//Create documents
 PUT  /suggestion/book/1
 {
 	"title" : "Elasticsearch book one",
@@ -60,6 +60,49 @@ PUT /suggestion/book/1
     ]
   }
 }
+
+PUT /suggestion/book/1
+{
+  "title": "Elasticsearch book one",
+  "title_suggest": {
+    "input": [
+      "Elasticsearch book one",
+      "Book elasticsearch",
+      "buy now .... "
+    ]
+  }
+}
+
+
+//Solution :: single output
+PUT /suggestion/book/1
+{
+  "title": "Elasticsearch book one",
+  "title_suggest": {
+    "input": [
+      "Elasticsearch book one",
+      "Book elasticsearch",
+      "buy now .... "
+    ],
+    "output": "Elasticsearch book one"
+  }
+}
+
+
+//Solution :: boost score
+PUT /suggestion/book/2
+{
+  "title": "Elasticsearch book two",
+  "title_suggest": {
+    "input": [
+      "Elasticsearch book one",
+      "discount"
+    ],
+    "output": "Elasticsearch book two",
+    "weight": 10
+  }
+}
+
 
 
 
