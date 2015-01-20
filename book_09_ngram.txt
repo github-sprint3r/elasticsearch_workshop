@@ -144,7 +144,7 @@ GET /demo_edge/_search
   "query": {
     "term": {
       "name": {
-        "value": "las"
+        "value": "boo"
       }
     }
   }
@@ -157,7 +157,7 @@ GET /demo_edge/_search
   "query": {
     "term": {
       "name": {
-        "value": "las"
+        "value": "book"
       }
     }
   },
