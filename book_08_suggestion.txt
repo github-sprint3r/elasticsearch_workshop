@@ -104,5 +104,29 @@ PUT /suggestion/book/2
 }
 
 
+//Solution :: working with payloads
+DELETE  /suggestion
+
+PUT /suggestion
+{
+  "mappings": {
+    "book": {
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "title_suggest": {
+          "type": "completion",
+          "payloads": true
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
 
 
