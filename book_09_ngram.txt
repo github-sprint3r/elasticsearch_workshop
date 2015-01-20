@@ -30,9 +30,57 @@ PUT /demo_ngram
 //Analyze N-gram with autocomplete
 GET /demo_ngram/_analyze?analyzer=autocomplete&text=quick
 
+//Update mapping
+PUT /demo_ngram/_mapping/my_type
+{
+  "my_type": {
+    "properties": {
+      "name": {
+        "type": "string",
+        "analyzer": "autocomplete"
+      }
+    }
+  }
+}
+
+//Create document
+POST /demo_ngram/my_type/_bulk
+    { "index": { "_id": 1}}
+    { "name": "Elasticsearch book one"}
+    { "index": { "_id": 2}}
+    { "name": "Elasticsearch book two" }
+    { "index": { "_id": 3}}
+    { "name": "Elasticsearch book three" }
+
+//Search
+GET /demo_ngram/_search
+{
+  "query": {
+    "term": {
+      "name": {
+        "value": "las"
+      }
+    }
+  }
+}
 
 
-
+//Search with highlight
+GET /demo_ngram/_search
+{
+  "query": {
+    "term": {
+      "name": {
+        "value": "las"
+      }
+    }
+  },
+  "highlight": {
+    "fields": {
+      "name": {}
+    }
+  }
+}
 
 ===================== Edge N-gram ==================
 
@@ -66,6 +114,18 @@ PUT /demo_edge
 
 //Analyze Edge N-gram with autocomplete
 GET /demo_ngram/_analyze?analyzer=autocomplete&text=quick
+
+
+//Update mapping
+PUT /demo_edge/_mapping/my_type
+    {
+        "my_type": {
+            "properties": {
+                "name": {
+                    "type":     "string",
+                    "analyzer": "autocomplete"
+} }
+} }
 
 
 
