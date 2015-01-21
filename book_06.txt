@@ -163,3 +163,39 @@ GET /store/book/_search
   ]
 }
 
+
+//Multiple filtered
+GET /store/_search
+{
+  "query": {
+    "filtered": {
+      "query": {
+        "term": {
+          "title": {
+            "value": "elasticsearch"
+          }
+        }
+      },
+      "filter": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "category": "Computer & Technology"
+              }
+            },
+            {
+              "range": {
+                "price": {
+                  "gte": 10,
+                  "lte": 25
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+
