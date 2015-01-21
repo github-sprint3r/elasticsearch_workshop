@@ -199,3 +199,40 @@ GET /store/_search
   }
 }
 
+
+
+
+GET /store/_search
+{
+  "query": {
+    "filtered": {
+      "query": {
+        "term": {
+          "title": {
+            "value": "elasticsearch"
+          }
+        }
+      },
+      "filter": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "category": "Computer & Technology"
+              }
+            },
+            {
+              "range": {
+                "published_date": {
+                  "gte": "2015-01-17",
+                  "lte": "now"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+
