@@ -5,6 +5,33 @@ PUT /store
 //Preparing data example
 
 
+//Empty search
+GET /store/book/_search
+{
+}
+
+GET /store/_search
+{
+   "query": {
+     "match_all": {}
+   }
+}
+
+//Not show _source
+GET /store/_search?_source=false
+{
+   "query": {
+     "match_all": {}
+   }
+}
+
+//Not show _source and show some field[s]
+GET /store/_search?_source=false&fields=title,price
+{
+   "query": {
+     "match_all": {}
+   }
+}
 
 
 //Search with a single term
