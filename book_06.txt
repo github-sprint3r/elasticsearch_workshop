@@ -33,6 +33,29 @@ GET /store/_search?_source=false&fields=title,price
    }
 }
 
+//Match
+GET /store/_search
+{
+  "query": {
+    "match": {
+      "title": "elasticsearch"
+    }
+  }
+}
+
+//Multiple match
+GET /store/book/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "nosql",
+      "fields": [
+        "title",
+        "long_description"
+      ]
+    }
+  }
+}
 
 //Search with a single term
 GET /store/book/_search
@@ -55,6 +78,36 @@ GET /store/book/_search
       "title": [
         "search",
         "the"
+      ]
+    }
+  }
+}
+
+//Multiple clause with boolean
+GET /store/_search?_source=false&fields=title,price
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "title": "elasticsearch"
+          }
+        }
+      ],
+      "should": [
+        {
+          "match": {
+            "title": "book"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "match": {
+            "title": "server"
+          }
+        }
       ]
     }
   }
