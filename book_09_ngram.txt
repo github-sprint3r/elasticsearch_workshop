@@ -66,6 +66,8 @@ GET /demo_ngram/_search
 
 
 //Search with highlight
+//http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-request-highlighting.html
+
 GET /demo_ngram/_search
 {
   "query": {
