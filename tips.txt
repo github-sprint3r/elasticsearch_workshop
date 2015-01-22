@@ -36,3 +36,47 @@ DELETE /my_blog
 
 //Delete alias by index
 DELETE /blog_v1/_alias/my_blog
+
+
+
+//Filter alias
+PUT /twitter_elasticsearch
+{
+  "mappings": {
+    "tweet": {
+      "properties": {
+        "message": {
+          "type": "string",
+          "index": "analyzed"
+        }
+      }
+    }
+  }
+}
+
+//Create filter alias
+POST /_aliases
+{
+  "actions": [
+    {
+      "add": {
+        "index": "twitter_elasticsearch",
+        "alias": "search",
+        "filter": {
+          "term": {
+            "message": "elasticsearch"
+          }
+        }
+      }
+    }
+  ]
+}
+
+//Add data in index
+POST /twitter_elasticsearch/tweet
+{
+  "message" : "elasticsearch boo"
+}
+
+//Search data
+GET /search/_search
