@@ -18,3 +18,4 @@ $ bin/elasticsearch -Des.node.data=true -Des.node.master=false -Des.node.name=Se
 $ bin/elasticsearch -Des.node.data=false -Des.node.master=true -Des.node.name=NoData
 $ bin/elasticsearch -Des.node.data=true -Des.node.master=false -Des.node.name=DataOne
 $ bin/elasticsearch -Des.node.data=true -Des.node.master=false -Des.node.name=DataTwo
+
