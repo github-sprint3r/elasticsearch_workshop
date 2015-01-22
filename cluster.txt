@@ -1,0 +1,20 @@
+//Cluster health
+GET _cluster/health
+
+//Create index with specified shard and replicate
+PUT /blog
+{
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 1
+  }
+}
+
+//Add 2 node with one master
+$ bin/elasticsearch -Des.node.data=true -Des.node.master=true -Des.node.name=First
+$ bin/elasticsearch -Des.node.data=true -Des.node.master=false -Des.node.name=Second
+
+//Add multiple node with 1 index node and 2 data node
+$ bin/elasticsearch -Des.node.data=false -Des.node.master=true -Des.node.name=NoData
+$ bin/elasticsearch -Des.node.data=true -Des.node.master=false -Des.node.name=DataOne
+$ bin/elasticsearch -Des.node.data=true -Des.node.master=false -Des.node.name=DataTwo
