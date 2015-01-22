@@ -22,3 +22,17 @@ POST /_aliases
         { "add" : { "index" : "blog_v2", "alias" : "my_blog" } }
     ]
 }
+
+//Add blog_v3 to my_blog
+POST /_aliases
+{
+    "actions" : [
+        { "add" : { "index" : "blog_v3", "alias" : "my_blog" } }
+    ]
+}
+
+//Delete  all index in alias
+DELETE /my_blog
+
+//Delete alias by index
+DELETE /blog_v1/_alias/my_blog
