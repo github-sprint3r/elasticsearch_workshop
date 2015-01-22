@@ -1,0 +1,24 @@
+//Create index
+PUT /blog_v1
+
+//Alias index
+POST /_aliases
+{
+  "actions": [
+    {
+      "add": {
+        "index": "blog_v1",
+        "alias": "my_blog"
+      }
+    }
+  ]
+}
+
+//Change to blog_v2
+POST /_aliases
+{
+    "actions" : [
+        { "remove" : { "index" : "blog_v1", "alias" : "my_blog" } },
+        { "add" : { "index" : "blog_v2", "alias" : "my_blog" } }
+    ]
+}
