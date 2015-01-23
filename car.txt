@@ -146,5 +146,74 @@ GET /cars/_search?search_type=count
 }
 
 
+//Car sold overtime
+GET /cars/_search?search_type=count
+{
+  "aggs": {
+    "sold": {
+      "date_histogram": {
+        "field": "sold",
+        "interval": "month"
+      }
+    }
+  }
+}
+
+//Format date
+GET /cars/_search?search_type=count
+{
+  "aggs": {
+    "sold": {
+      "date_histogram": {
+        "field": "sold",
+        "interval": "month",
+        "format": "yyyy-MM-dd"
+      }
+    }
+  }
+}
+
+//Return empty bucket
+GET /cars/_search?search_type=count
+{
+  "aggs": {
+    "sold": {
+      "date_histogram": {
+        "field": "sold",
+        "interval": "month",
+        "format": "yyyy-MM-dd",
+        "min_doc_count": 0
+      }
+    }
+  }
+}
+
+//Return empty bucket in 12 month
+GET /cars/_search?search_type=count
+{
+  "aggs": {
+    "sold": {
+      "date_histogram": {
+        "field": "sold",
+        "interval": "month",
+        "format": "yyyy-MM-dd",
+        "min_doc_count": 0,
+        "extended_bounds" : {
+          "min" : "2014-01-01",
+          "max" : "2014-12-31"
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
 
 
