@@ -1,0 +1,55 @@
+PUT /xxx
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "th_TH": {
+          "tokenizer": "thai",
+          "filter": [
+            "lowercase",
+            "th_TH"
+          ]
+        }
+      },
+      "filter": {
+        "th_TH": {
+          "type": "hunspell",
+          "language": "th_TH",
+          "dedup": true
+        }
+      }
+    }
+  }
+}
+
+PUT /yyy
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "en_US": {
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "en_US"
+          ]
+        }
+      },
+      "filter": {
+        "en_US": {
+          "type": "hunspell",
+          "language": "en_US",
+          "dedup": true
+        }
+      }
+    }
+  }
+}
+
+
+http://localhost:9200/yyy/_analyze?analyzer=en_US&text=jumped&pretty
+
+
+
+
+
