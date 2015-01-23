@@ -90,6 +90,7 @@ GET /store/book/_search?search_type=count
 }
 
 
+
 //Price range
 GET /store/book/_search?search_type=count
 {

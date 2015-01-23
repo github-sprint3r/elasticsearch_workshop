@@ -19,3 +19,35 @@ PUT /store/_mapping/book
 
 //Test mapping
 GET /store/_analyze?field=category&text=test category
+
+
+//Try to query
+GET store/_search?search_type=count
+{
+  "aggs": {
+    "number_of_book": {
+      "terms": {
+        "field": "category"
+      }
+    }
+  }
+}
+
+//Second problem :: search + count by category
+GET store/_search
+{
+  "query": {
+    "term": {
+      "category": {
+        "value": "computer"
+      }
+    }
+  },
+  "aggs": {
+    "number_of_book": {
+      "terms": {
+        "field": "category"
+      }
+    }
+  }
+}
