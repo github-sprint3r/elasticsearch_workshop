@@ -1,0 +1,19 @@
+//Join
+PUT /blog/user/1
+{
+  "name" : "somkiat",
+  "email": "somkiat.p@gmail.com"
+}
+
+PUT /blog/post/1
+{
+  "title" : "Hello relationship",
+  "body"  : "Hi, all",
+  "user"  : 1
+}
+
+
+//Denormalization
+
+
+
