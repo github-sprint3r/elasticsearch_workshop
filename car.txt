@@ -29,4 +29,84 @@ GET /cars/_search?search_type=count
   }
 }
 
+//Average price in each color
+GET /cars/_search?search_type=count
+{
+  "aggs": {
+    "colors": {
+      "terms": {
+        "field": "color"
+      }
+      ,
+      "aggs": {
+        "avg_price": {
+          "avg": {
+            "field": "price"
+          }
+        }
+      }
+    }
+  }
+}
+
+//Make in each color
+GET /cars/_search?search_type=count
+{
+  "aggs": {
+    "colors": {
+      "terms": {
+        "field": "color"
+      },
+      "aggs": {
+        "avg_price": {
+          "avg": {
+            "field": "price"
+          }
+        },
+        "make": {
+          "terms": {
+            "field": "make"
+          }
+        }
+      }
+    }
+  }
+}
+
+//Add min and max price in each make
+GET /cars/_search?search_type=count
+{
+  "aggs": {
+    "colors": {
+      "terms": {
+        "field": "color"
+      },
+      "aggs": {
+        "avg_price": {
+          "avg": {
+            "field": "price"
+          }
+        },
+        "make": {
+          "terms": {
+            "field": "make"
+          },
+          "aggs": {
+            "min_price": {
+              "min": {
+                "field": "price"
+              }
+            },
+            "max_price" : {
+              "max": {
+                "field": "price"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 
