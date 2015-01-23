@@ -14,6 +14,136 @@ PUT /blog/post/1
 
 
 //Denormalization
+PUT /blog/post/1
+{
+  "title": "Hello relationship",
+  "body": "Hi, all",
+  "user": {
+    "id": 1,
+    "name": "somkiat",
+    "email": "somkiat.p@gmail.com"
+  }
+}
 
+//Search post by username
+GET /blog/post/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {"title": "hello"}
+        },
+        {
+          "match": {"user.name": "somkiat"}
+        }
+      ]
+    }
+  }
+}
+
+
+//Create document
+PUT /blog/post/1
+{
+  "title": "Hello relationship",
+  "body": "Hi, all",
+  "user": {
+    "id": 1,
+    "name": "somkiat puisungnoen",
+    "email": "somkiat.p@gmail.com"
+  }
+}
+
+PUT /blog/post/2
+{
+  "title": "Hello relationship 2",
+  "body": "Hi, all 2",
+  "user": {
+    "id": 1,
+    "name": "somkiat puisungnoen",
+    "email": "somkiat.p@gmail.com"
+  }
+}
+
+PUT /blog/post/3
+{
+  "title": "Hello relationship 3",
+  "body": "Hi, all 3",
+  "user": {
+    "id": 2,
+    "name": "somkiat unknown",
+    "email": "xxx@gmail.com"
+  }
+}
+
+
+//Problem :: Search post by username +  # of blog by username
+GET /blog/post/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {"title": "hello"}
+        },
+        {
+          "match": {"user.name": "somkiat"}
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "users": {
+      "terms": {
+        "field": "user.name"
+      }
+    }
+  }
+}
+
+//Solution :: update mapping
+PUT /blog/_mapping/post
+{
+  "properties": {
+    "user": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "fields": {
+            "raw": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//Query again
+GET /blog/post/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {"title": "hello"}
+        },
+        {
+          "match": {"user.name": "somkiat"}
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "users": {
+      "terms": {
+        "field": "user.name.raw"
+      }
+    }
+  }
+}
 
 
