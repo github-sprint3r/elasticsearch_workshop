@@ -51,3 +51,39 @@ GET store/_search
     }
   }
 }
+
+//Solution :: Update mapping with adding field to category fields
+PUT /store/_mapping/book
+{
+  "properties" : {
+    "category" : {
+      "type" :    "string",
+      "fields": {
+        "raw" : {
+          "type": "string",
+          "index": "not_analyzed"
+        }
+      }
+    }
+  }
+}
+
+
+//Change query
+GET store/_search
+{
+  "query": {
+    "term": {
+      "category": {
+        "value": "computer"
+      }
+    }
+  },
+  "aggs": {
+    "number_of_book": {
+      "terms": {
+        "field": "category.raw"
+      }
+    }
+  }
+}
