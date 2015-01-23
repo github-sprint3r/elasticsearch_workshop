@@ -110,3 +110,41 @@ GET /cars/_search?search_type=count
 }
 
 
+//Show using histogram
+GET /cars/_search?search_type=count
+{
+  "aggs": {
+    "price": {
+      "histogram": {
+        "field": "price",
+        "interval": 20000
+      }
+    }
+  }
+}
+
+
+//Top car in each range
+GET /cars/_search?search_type=count
+{
+  "aggs": {
+    "price": {
+      "histogram": {
+        "field": "price",
+        "interval": 20000
+      },
+      "aggs": {
+        "make": {
+          "terms": {
+            "field": "make",
+            "size": 1
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
