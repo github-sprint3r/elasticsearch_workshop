@@ -1,0 +1,54 @@
+DELETE store
+
+POST store/book/
+{
+  "name" : "lucene book",
+  "price" : 400
+}
+POST store/book/
+{
+  "name" : "elasticsearch book",
+  "price" : 200
+}
+POST store/book/
+{
+  "name" : "book",
+  "price" : 100
+}
+
+GET store/_search
+
+GET store/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "name" : {
+              "query": "book"
+            }
+          }
+        }
+      ], 
+      "should": [
+        {
+          "match": {
+            "name" : {
+              "query": "elasticsearch",
+              "boost" : 5
+            }
+          }
+        },
+        {
+          "match": {
+            "name" : {
+              "query": "lucene",
+              "boost" : 2
+            }
+          }
+        }
+      ]
+    }
+  }
+}
