@@ -1,0 +1,43 @@
+=== List of URL ====
+https://github.com/github-sprint3r/elasticsearch_workshop
+
+http://localhost:9200/_cat/nodes
+
+http://localhost:9200/_cat
+
+http://localhost:9200/_plugin/marvel
+
+http://localhost:9200/_plugin/marvel/sense/index.html
+
+
+Name node
+https://github.com/elasticsearch/elasticsearch/blob/master/src%2Fmain%2Fresources%2Fconfig%2Fnames.txt
+
+
+=== Day 1 ===
+Intro
+Index document
+Query
+Query DSL
+Boost query
+Analyzer
+Mapping
+Aggregation
+
+=== Day 2===
+Aggregation
+Kibana with Cars index
+Modeling data
+Workshop :: Search + Aggregation
+Auto-suggestion (FST, n-gram, edge n-gram)
+Clustering
+Logstash (Intro)
+
+
+
+
+
+
+
+
+
