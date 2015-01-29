@@ -1,0 +1,7 @@
+GET  thai,english/_search
+{
+	"indices_boost" : {
+		"thai" : 1.5,
+		"english" : 1.1
+	}
+}
