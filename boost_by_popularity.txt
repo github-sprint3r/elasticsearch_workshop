@@ -1,0 +1,63 @@
+//Data
+PUT /blogs/post/1
+{
+  "title":   "my course",
+  "content": "In this post we will talk about...",
+  "like":   6
+}
+
+PUT /blogs/post/2
+{
+  "title":   "Good developer course",
+  "content": "In this post we will talk about...",
+  "like":   3
+}
+
+PUT /blogs/post/3
+{
+  "title":   "Course elasticsearch for developer",
+  "content": "In this post we will talk about...",
+  "like":   30
+}
+
+
+
+//Query by popularity
+GET blogs/_search
+{
+ "query": {
+   "function_score": {
+     "query": {
+       "multi_match": {
+         "query": "course",
+         "fields": ["title", "content"]
+       }
+     }, 
+     "field_value_factor": {
+       "field": "like"
+     }
+   }
+ } 
+}
+
+
+//Custom function score
+GET blogs/_search
+{
+ "query": {
+   "function_score": {
+     "query": {
+       "multi_match": {
+         "query": "course",
+         "fields": ["title", "content"]
+       }
+     }, 
+     "field_value_factor": {
+       "field": "like",
+       "modifier": "log",
+       "factor": 1.2
+     },
+     "boost_mode": "sum"
+   }
+ } 
+}
