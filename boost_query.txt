@@ -94,7 +94,29 @@ GET store/_search
   }
 }
 
+//Positive and negative boosting
+GET store/_search
+{
+  "query": {
+    "boosting": {
+      "positive": {
+        "term": {
+          "name": "book"
+        }
+      },
+      "negative": {
+        "term": {
+          "name": "elasticsearch"
+        }
+      },
+      "negative_boost": 0.1
+    }
+  }
+}
+
 
 
 http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-boosting-query.html
 http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/not-quite-not.html
+http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/_boosting_query_clauses.html
+
