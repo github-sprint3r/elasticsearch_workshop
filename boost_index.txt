@@ -5,3 +5,4 @@ GET  thai,english/_search
 		"english" : 1.1
 	}
 }
+
