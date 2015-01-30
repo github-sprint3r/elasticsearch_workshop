@@ -30,6 +30,33 @@ GET store/_search
   }
 }
 
+//Boosting query in boolean query
+GET store/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "name": {
+              "query": "book"
+            }
+          }
+        }
+      ],
+      "should": [
+        {
+          "match": {
+            "name": {
+              "query": "lucene",
+              "boost": 5
+            }
+          }
+        }
+      ]
+    }
+  }
+}
 
 //Boosting query in boolean query
 GET store/_search
