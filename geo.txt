@@ -126,3 +126,24 @@ GET /my_map/_search
   }
 }
 
+//Filter geo distance range
+GET /my_map/_search
+{
+  "query": {
+    "filtered": {
+      "filter": {
+       "geo_distance_range": {
+         "from": 0,
+         "to": 200,
+         "distance_unit": "km",
+         "location": {
+           "lat": 13.736717,
+           "lon": 100.523186
+         }
+       }
+      }
+    }
+  }
+}
+
+
