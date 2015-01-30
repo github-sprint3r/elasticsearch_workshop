@@ -24,3 +24,8 @@ PUT /my_map/city/4
   "location" : "18.796143,  98.979263"
 }
 
+PUT /my_map/city/5
+{
+  "name" : "Sathon, Bangkok",
+  "location" : "13.713261,  100.531487"
+}
