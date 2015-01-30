@@ -1,0 +1,26 @@
+//Data
+PUT /my_map/city/1
+{
+  "name" : "Bangkok",
+  "location" : "13.736717, 100.523186"
+}
+
+
+PUT /my_map/city/2
+{
+  "name" : "Phetchaburi",
+  "location" : "13.111160,  99.939133"
+}
+
+PUT /my_map/city/3
+{
+  "name" : "Pattaya",
+  "location" : "12.927608,  100.877083"
+}
+
+PUT /my_map/city/4
+{
+  "name" : "Chiang Mai",
+  "location" : "18.796143,  98.979263"
+}
+
