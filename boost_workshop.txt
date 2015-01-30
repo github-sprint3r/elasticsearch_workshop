@@ -88,6 +88,33 @@ GET store/_search
   }
 }
 
+//Prioritize by field
+GET store/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "name": {
+              "query": "book",
+              "boost" : 5
+            }
+          }
+        },
+        {
+          "match": {
+            "detail": {
+              "query": "book",
+              "boost": 1
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
 
 http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/_boosting_query_clauses.html
 http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html
