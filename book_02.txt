@@ -89,3 +89,14 @@ PUT /store/book/123/_create
         "tag" : ["new", "book"]
 }
 
+
+//Delete by query
+DELETE /store/book/_query
+{
+  "query": {
+    "term": {
+      "tag": "elasticsearch"
+    }
+  }
+}
+
