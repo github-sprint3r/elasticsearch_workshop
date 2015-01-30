@@ -107,3 +107,22 @@ GET /my_map/_search
 }
 
 
+//Filter geo distance
+GET /my_map/_search
+{
+  "query": {
+    "filtered": {
+      "filter": {
+       "geo_distance": {
+         "distance": 100,
+         "distance_unit": "km",
+         "location": {
+           "lat": 18.796143,
+           "lon": 98.979263
+         }
+       }
+      }
+    }
+  }
+}
+
