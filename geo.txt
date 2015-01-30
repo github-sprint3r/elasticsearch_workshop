@@ -1,2 +1,42 @@
-//Data
+
+//Create mapping
+PUT /my_map
+{
+  "mappings": {
+    "city": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "location": {
+          "type": "geo_point"
+        }
+      }
+    }
+  }
+}
+
+//Index 1 :: string format (lat, lon)
+PUT /my_map/city/1
+{
+  "name" : "Bangkok",
+  "location" : "13.45, 100.35"
+}
+
+//Index 2 :: Object with lat, lon
+PUT /my_map/city/1
+{
+  "name" : "Bangkok",
+  "location" : {
+       "lat" : 13.45,
+       "lon" : 100.35
+    }
+}
+
+//Index 3 :: Array with [lon, lat]
+PUT /my_map/city/1
+{
+  "name" : "Bangkok",
+  "location" : [100.35,13.45]
+}
 
