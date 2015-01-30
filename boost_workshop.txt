@@ -1,0 +1,89 @@
+//Data
+DELETE store
+
+POST store/book/
+{
+  "name" : "lucene",
+  "detail" :  "lucene book book book book",
+  "price" : 400
+}
+
+POST store/book/
+{
+  "name" : "lucene book",
+  "detail" :  "lucene book book book book",
+  "price" : 400
+}
+POST store/book/
+{
+  "name" : "elasticsearch in action",
+  "detail" : "elasticsearch book book book book book book",
+  "price" : 200
+}
+POST store/book/
+{
+  "name" : "book",
+  "detail" : "my personal book",
+  "price" : 100
+}
+
+//Search by term book
+GET store/_search
+{
+  "query": {
+    "term": {
+      "_all": {
+        "value": "book"
+      }
+    }
+  }
+}
+
+
+//Workshop
+GET store/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "_all": {
+              "query": "book"
+            }
+          }
+        }
+      ],
+      "should": [
+        {
+          "match": {
+            "name": {
+              "query": "book",
+              "boost": 5
+            }
+          }
+        },
+        {
+          "match": {
+            "detail": {
+              "query": "book",
+              "boost" : 2
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+//Boost search with multi match query
+GET store/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "book",
+      "fields": ["name^5", "detail"]
+    }
+  }
+}
