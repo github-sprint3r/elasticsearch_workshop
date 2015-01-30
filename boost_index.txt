@@ -6,3 +6,20 @@ GET  thai,english/_search
 	}
 }
 
+
+GET /docs_2014_*/_search 
+{
+  "indices_boost": { 
+    "docs_2014_10": 3,
+    "docs_2014_09": 2
+  },
+  "query": {
+    "match": {
+      "text": "quick brown fox"
+    }
+  }
+}
+
+
+http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/query-time-boosting.html
+
