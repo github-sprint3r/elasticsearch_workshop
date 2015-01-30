@@ -57,7 +57,8 @@ GET blogs/_search
        "modifier": "log",
        "factor": 1.2
      },
-     "boost_mode": "sum"
+     "boost_mode": "sum",
+     "max_boost": 10
    }
  } 
 }
