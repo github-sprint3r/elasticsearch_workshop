@@ -40,3 +40,70 @@ PUT /my_map/city/1
   "location" : [100.35,13.45]
 }
 
+
+//Filter data with bulding box
+GET /my_map/_search
+{
+  "query": {
+    "filtered": {
+      "filter": {
+        "geo_bounding_box": {
+          "location": {
+            "top_left": {
+              "lat": 13.856636,
+              "lon": 100.328240
+            },
+            "bottom_right": {
+              "lat": 13.680571,
+              "lon": 100.677056
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//Optimize geo point
+PUT /my_map
+{
+  "mappings": {
+    "city": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "location": {
+          "type": "geo_point",
+          "lat_lon": true
+        }
+      }
+    }
+  }
+}
+
+//Filter with indexed
+GET /my_map/_search
+{
+  "query": {
+    "filtered": {
+      "filter": {
+        "geo_bounding_box": {
+          "type": "indexed",
+          "location": {
+            "top_left": {
+              "lat": 13.856636,
+              "lon": 100.328240
+            },
+            "bottom_right": {
+              "lat": 13.680571,
+              "lon": 100.677056
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
