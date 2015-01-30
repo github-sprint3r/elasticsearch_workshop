@@ -18,6 +18,20 @@ POST store/book/
 
 GET store/_search
 
+//Search by term book
+GET store/_search
+{
+  "query": {
+    "term": {
+      "name": {
+        "value": "book"
+      }
+    }
+  }
+}
+
+
+//Boosting query in boolean query
 GET store/_search
 {
   "query": {
