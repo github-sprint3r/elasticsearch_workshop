@@ -32,3 +32,5 @@ GET store/book/_search
     }
   ]
 }
+
+http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/multi-fields.html
