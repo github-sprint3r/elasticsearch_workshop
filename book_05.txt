@@ -66,6 +66,9 @@ PUT /store
   }
 }
 
+//Test thai
+http://localhost:9200/store/_analyze?field=title&text=สวัสดีประเทศไทย&pretty
+
 //Add default of search and index analyzer
 PUT /store
 {
