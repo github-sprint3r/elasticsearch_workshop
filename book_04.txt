@@ -1,4 +1,5 @@
 //Index new documents
+DELETE store
 
 PUT /store/book/1
     {
