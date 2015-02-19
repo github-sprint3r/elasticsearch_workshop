@@ -1,0 +1,104 @@
+DELETE test_dynamic
+
+PUT test_dynamic
+{
+  "mappings": {
+    "logs": {
+      "dynamic_templates": [
+        {
+          "string_fields": {
+            "mapping": {
+              "index": "analyzed",
+              "type": "string",
+              "fields": {
+                "raw": {
+                  "index": "not_analyzed",
+                  "type": "string"
+                }
+              }
+            },
+            "match_mapping_type": "string",
+            "match": "*"
+          }
+        }
+      ]
+    }
+  }
+}
+
+GET test_dynamic
+
+
+PUT test_dynamic/logs/1
+{
+  "name" : "yyyyyyy",
+  "category" : "xxxx",
+  "price" : 100000000000
+}
+
+PUT test_dynamic/logs/2
+{
+  "name" : "somkiat puisungnoen",
+  "category" : "computer & technology",
+  "price" : "100"
+}
+
+GET test_dynamic/_search
+
+
+
+PUT xxx/post/1
+{
+  "test" : "11111111"
+}
+
+PUT xxx/post/2
+{
+  "test" : 111111111
+}
+
+
+
+
+GET olxlogger-2015.02.13/_mapping
+
+GET olxlogger-2015.02.13/_search?search_type=count
+{
+  "query": {
+    "filtered": {
+      "query": {
+        "terms": {
+          "reason_id": [
+            "1",
+            "2",
+            "3",
+            "6"
+          ]
+        }
+      },
+      "filter": {
+        "range": {
+          "@timestamp": {
+            "gte": "now-6H",
+            "lte": "now"
+          }
+        }
+      }
+    }
+  },
+  "aggs": {
+    "item": {
+      "terms": {
+        "field": "item_id",
+        "size": 10
+      },
+      "aggs": {
+        "details": {
+          "terms": {
+            "field": "comment.raw"
+          }
+        }
+      }
+    }
+  }
+}
