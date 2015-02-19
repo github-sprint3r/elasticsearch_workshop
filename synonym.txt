@@ -63,3 +63,65 @@ GET user/_search
 }
 
 GET user/_analyze?analyzer=synonym&text=i pad
+
+
+//For thai language
+PUT user
+{
+  "settings": {
+    "index": {
+      "analysis": {
+        "analyzer": {
+          "synonym": {
+            "tokenizer": "whitespace",
+            "filter": [
+              "synonym"
+            ]
+          }
+        },
+        "filter": {
+          "synonym": {
+            "type": "synonym",
+            "synonyms_path": "synonym.txt"
+          }
+        }
+      }
+    }
+  },
+  "mappings": {
+    "employee": {
+      "properties": {
+        "name_word": {
+          "type": "string",
+          "analyzer": "synonym"
+        }
+      }
+    }
+  }
+}
+
+
+PUT user/employee/1
+{
+  "name" : "โอรสราชธิดา",
+  "name_word" : "โอรส ราชธิดา"
+}
+
+PUT user/employee/2
+{
+  "name" : "บุตรที่เกิดมาจากพ่อแม่",
+  "name_word" : "บุตร ที่  เกิด มา จากพ่"
+}
+
+GET user/_search
+
+GET user/_search
+{
+  "query": {
+    "query_string": {
+      "default_field": "name_word",
+      "query": "ลูกชาย",
+      "analyzer": "synonym"
+    }
+  }
+}
