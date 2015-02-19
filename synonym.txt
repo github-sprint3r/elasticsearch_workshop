@@ -1,0 +1,65 @@
+GET _all/_settings
+
+DELETE user
+
+PUT user
+{
+  "settings": {
+    "index": {
+      "analysis": {
+        "analyzer": {
+          "synonym": {
+            "tokenizer": "whitespace",
+            "filter": [
+              "synonym"
+            ]
+          }
+        },
+        "filter": {
+          "synonym": {
+            "type": "synonym",
+            "synonyms_path": "synonym.txt"
+          }
+        }
+      }
+    }
+  },
+  "mappings": {
+    "employee": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "analyzer": "synonym"
+        }
+      }
+    }
+  }
+}
+
+POST user/_open
+POST user/_close
+
+
+PUT user/employee/1
+{
+  "name" : "new i pad"
+}
+
+PUT user/employee/2
+{
+  "name" : "new i-pad"
+}
+
+
+GET user/_search
+{
+  "query": {
+    "query_string": {
+      "default_field": "name",
+      "query": "ipad",
+      "analyzer": "synonym"
+    }
+  }
+}
+
+GET user/_analyze?analyzer=synonym&text=i pad
