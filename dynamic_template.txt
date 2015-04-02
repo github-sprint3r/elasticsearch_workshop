@@ -1,4 +1,35 @@
+https://gist.github.com/deverton/2970285
+https://github.com/logstash-plugins/logstash-output-elasticsearch/blob/master/lib/logstash/outputs/elasticsearch/elasticsearch-template.json
+
+
 DELETE test_dynamic
+
+PUT test_dynamic
+{
+  "mappings": {
+    "logs": {
+      "dynamic_templates": [
+        {
+          "string_fields": {
+            "mapping": {
+              "index": "analyzed",
+              "type": "string",
+              "fields": {
+                "raw": {
+                  "index": "not_analyzed",
+                  "type": "string"
+                }
+              }
+            },
+            "match_mapping_type": "string",
+            "match": "*"
+          }
+        }
+      ]
+    }
+  }
+}
+
 
 PUT test_dynamic
 {

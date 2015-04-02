@@ -1,0 +1,101 @@
+PUT kaidee
+{
+   "mappings": {
+      "product": {
+         "dynamic_templates": [
+            {
+               "string_fields": {
+                  "mapping": {
+                     "index": "analyzed",
+                     "type": "string",
+                     "fields": {
+                        "raw": {
+                           "index": "not_analyzed",
+                           "type": "string"
+                        }
+                     }
+                  },
+                  "match_mapping_type": "string",
+                  "match": "*"
+               }
+            }
+         ],
+         "properties": {
+            "extra_field": {
+               "type": "string",
+               "index": "not_analyzed"
+            },
+            "view": {
+               "type": "integer"
+            }
+         }
+      }
+   }
+}
+
+//Index data with error
+PUT kaidee/product/1
+{
+   "name": "name 01",
+   "extra_field": "extra value",
+   "view": "ggg"
+}
+
+//Index data
+PUT kaidee/product/1
+{
+   "name": "name 01",
+   "extra_field": "extra value",
+   "view": 10
+}
+
+//Create template with _template API
+GET _template
+GET _template/<template name>
+
+DELETE _template/<template name>
+
+
+PUT _template/template_kaidee
+{
+   "template": "kaidee",
+   "settings": {
+      "number_of_shards": 5,
+      "number_of_replicas": 0
+   },
+   "mappings": {
+      "product": {
+         "dynamic_templates": [
+            {
+               "string_fields": {
+                  "mapping": {
+                     "index": "analyzed",
+                     "type": "string",
+                     "fields": {
+                        "raw": {
+                           "index": "not_analyzed",
+                           "type": "string"
+                        }
+                     }
+                  },
+                  "match_mapping_type": "string",
+                  "match": "*"
+               }
+            }
+         ],
+         "properties": {
+            "extra_field": {
+               "type": "string",
+               "index": "not_analyzed"
+            },
+            "view": {
+               "type": "integer"
+            }
+         }
+      }
+   }
+}
+
+//Create index template with json file
+curl -XPUT 'http://localhost:9200/_template/template_kaidee/' -d @template_kaidee.json
+

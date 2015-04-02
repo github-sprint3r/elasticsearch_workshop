@@ -1,0 +1,38 @@
+{
+   "template": "kaidee",
+   "settings": {
+      "number_of_shards": 5,
+      "number_of_replicas": 0
+   },
+   "mappings": {
+      "product": {
+         "dynamic_templates": [
+            {
+               "string_fields": {
+                  "mapping": {
+                     "index": "analyzed",
+                     "type": "string",
+                     "fields": {
+                        "raw": {
+                           "index": "not_analyzed",
+                           "type": "string"
+                        }
+                     }
+                  },
+                  "match_mapping_type": "string",
+                  "match": "*"
+               }
+            }
+         ],
+         "properties": {
+            "extra_field": {
+               "type": "string",
+               "index": "not_analyzed"
+            },
+            "view": {
+               "type": "integer"
+            }
+         }
+      }
+   }
+}
