@@ -1,0 +1,7 @@
+cluster.name: kaidee
+node.name: node04
+node.master: false
+node.data: true
+http.enabled: false
+path.data: /Users/somkiat/data/slide/Elasticsearch/kaidee/software/data04
+

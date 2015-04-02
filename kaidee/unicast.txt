@@ -1,0 +1,4 @@
+cluster.name: kaidee
+
+discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.unicast.hosts: ["node02:9201", "node04:9203"]

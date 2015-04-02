@@ -1,0 +1,7 @@
+cluster.name: kaidee
+node.name: node01
+node.master: true
+node.data: false
+path.data: /Users/somkiat/data/slide/Elasticsearch/kaidee/software/data01
+
+

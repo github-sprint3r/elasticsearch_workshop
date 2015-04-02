@@ -1,0 +1,10 @@
+cluster.name: kaidee
+
+discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.unicast.hosts: ["node02:9201", "node04:9203", "node05:9204"]
+
+discovery.zen.minimum_master_nodes: 2
+
+#Default values
+discovery.zen.ping_timeout: 3s
+discovery.zen.join_timeout: 20

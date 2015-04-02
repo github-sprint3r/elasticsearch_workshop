@@ -1,0 +1,53 @@
+//Head plugin
+bin/plugin -install mobz/elasticsearch-head
+
+//Cluster health
+GET _cluster/health
+
+
+//Single node ( master and data )
+PUT /blog
+{
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 0
+  }
+}
+
+//Two node with distributed data
+$ bin/elasticsearch -Des.config=/Users/somkiat/data/slide/Elasticsearch/kaidee/software/node01.yml
+
+$ bin/elasticsearch -Des.config=/Users/somkiat/data/slide/Elasticsearch/kaidee/software/node02.yml
+
+//Two node with replica
+PUT /blog2
+{
+  "settings": {
+    "number_of_shards": 4,
+    "number_of_replicas": 1
+  }
+}
+
+//Node with single responsibility
+Node 01 =>  Master + Index
+Node 02 =>  Data
+Node 03 =>  Query
+
+$ bin/elasticsearch -Des.config=/Users/somkiat/data/slide/Elasticsearch/demo/es_for_developer/kaidee/single_responsibility/node01.yml
+
+$ bin/elasticsearch -Des.config=/Users/somkiat/data/slide/Elasticsearch/demo/es_for_developer/kaidee/single_responsibility/node02.yml
+
+$ bin/elasticsearch -Des.config=/Users/somkiat/data/slide/Elasticsearch/demo/es_for_developer/kaidee/single_responsibility/node03.yml
+
+//Create index with replica = 1
+PUT /blog3
+{
+  "settings": {
+    "number_of_shards": 4,
+    "number_of_replicas": 1
+  }
+}
+
+//Add node 04 = data only
+$ bin/elasticsearch -Des.config=/Users/somkiat/data/slide/Elasticsearch/demo/es_for_developer/kaidee/single_responsibility/node04.yml
+
