@@ -1,0 +1,24 @@
+GET blog/_search
+{
+    "script_fields": {
+        "my_field": {
+            "script": "1 + my_var",
+            "params": {
+              "my_var": 2
+            }
+        }
+    }
+}
+
+
+GET blog/_search
+{
+    "script_fields": {
+        "my_field": {
+            "script_file": "xxx",
+            "params": {
+              "my_var": 3
+            }
+        }
+    }
+}
