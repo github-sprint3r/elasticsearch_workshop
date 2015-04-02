@@ -1,0 +1,28 @@
+//1. Create repository
+PUT _snapshot/backup_kaidee
+{
+    "type": "fs",
+    "settings": {
+        "location": "/Users/somkiat/data/slide/Elasticsearch/kaidee/backup/xxx",
+        "compress": true
+    }
+}
+
+//List of snapshot
+GET _snapshot
+
+GET _snapshot/backup_kaidee
+
+//2. Create snapshot
+PUT _snapshot/backup_kaidee/snapshot_01
+{
+   "indices": "kaidee",
+   "ignore_unavailable": "true",
+   "include_global_state": false
+}
+
+GET _snapshot/backup_kaidee/snapshot_01
+
+
+//Restore
+POST _snapshot/backup_kaidee/snapshot_01/_restore
