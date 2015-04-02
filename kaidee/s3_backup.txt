@@ -1,3 +1,7 @@
+//Config IAM
+cloud.aws.access_key: <access key>
+cloud.aws.secret_key: <secret key>
+
 //1. Create repository
 PUT _snapshot/backup_s3
 {
