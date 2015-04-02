@@ -1,0 +1,21 @@
+//1. Create repository
+PUT _snapshot/backup_s3
+{
+    "type": "s3",
+    "settings": {
+         "bucket": "somkiat_backup",
+         "region": "ap-southeast-2"
+     }
+}
+
+
+//2. Create snapshot
+PUT _snapshot/backup_s3/snapshot_01
+{
+   "indices": "kaidee",
+   "ignore_unavailable": "true",
+   "include_global_state": false
+}
+
+//3. Restore
+POST _snapshot/backup_s3/snapshot_01/_restore
