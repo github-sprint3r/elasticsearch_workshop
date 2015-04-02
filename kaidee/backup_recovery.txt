@@ -13,6 +13,8 @@ GET _snapshot
 
 GET _snapshot/backup_kaidee
 
+DELETE _snapshot/backup_kaidee
+
 //2. Create snapshot
 PUT _snapshot/backup_kaidee/snapshot_01
 {
@@ -22,6 +24,8 @@ PUT _snapshot/backup_kaidee/snapshot_01
 }
 
 GET _snapshot/backup_kaidee/snapshot_01
+
+DELETE _snapshot/backup_kaidee/snapshot_01
 
 
 //3. Restore
