@@ -1,0 +1,8 @@
+mappings:
+  book:
+    properties:
+      name:
+        type: "string"
+        analyzer: "thai"
+      price:
+        type: double
