@@ -7,8 +7,8 @@ PUT _snapshot/backup_s3
 {
     "type": "s3",
     "settings": {
-         "bucket": "somkiat_backup",
-         "region": "ap-southeast-2"
+         "bucket": "somkiatbackup",
+         "region": "ap-southeast"
      }
 }
 
