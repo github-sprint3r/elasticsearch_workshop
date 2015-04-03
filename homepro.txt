@@ -1,0 +1,99 @@
+PUT homepro
+{
+  "mappings": {
+    "product": {
+      "dynamic_templates": [
+        {
+          "string_fields": {
+            "mapping": {
+              "index": "not_analyzed",
+              "type": "string"
+            },
+            "match_mapping_type": "string",
+            "path_match": "attributes.*"
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+//Dump data
+https://github.com/taskrabbit/elasticsearch-dump
+
+//Export from ES to File
+
+$elasticdump \
+  --all=true \
+  --input=http://localhost:9200/homepro \
+  --output=homepro.json
+
+  //Import from File to ES(index = homepro)
+
+  $elasticdump \
+  --bulk=true \
+  --input=homepro.json \
+  --output=http://localhost:9200
+
+
+
+
+  //Query
+  GET _cat/indices
+
+DELETE *
+
+PUT homepro
+{
+  "mappings": {
+    "product": {
+      "dynamic_templates": [
+        {
+          "string_fields": {
+            "mapping": {
+              "index": "not_analyzed",
+              "type": "string"
+            },
+            "match_mapping_type": "string",
+            "path_match": "attributes.*"
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+GET homepro/
+
+GET homepro/_count
+
+GET homepro/_count
+{
+    "query": {
+        "filtered": {
+           "filter": {
+               "missing": {
+                  "field": "attributes"
+               }
+           }
+        }
+    }
+}
+
+GET homepro/_search
+{
+    "from": 0,
+    "size": 10, 
+    "query": {
+        "term": {
+           "_all": {
+              "value": "ตู้เย็น"
+           }
+        }
+    }
+}
+
+
+
