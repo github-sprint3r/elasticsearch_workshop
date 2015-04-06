@@ -24,3 +24,20 @@ PUT _cluster/settings
       "cluster.routing.allocation.enable": "all"
    }
 }
+
+
+
+// Rerouting
+POST _cluster/reroute
+{
+   "commands": [
+      {
+         "allocate": {
+            "index": "logstash-2015.04.03",
+            "shard": 2,
+            "node": "ek01",
+            "allow_primary": true
+         }
+      }
+   ]
+}

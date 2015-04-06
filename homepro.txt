@@ -13,7 +13,27 @@ PUT homepro
             "path_match": "attributes.*"
           }
         }
-      ]
+      ],
+      "properties": {
+            "category.thai": {
+               "type": "string",
+               "index": "not_analyzed"
+            },
+            "category.english": {
+               "type": "string",
+               "index": "not_analyzed"
+            },
+            "brand": {
+               "type": "string",
+               "index": "analyzed",
+               "fields" : {
+                  "raw" : {
+                      "type": "string",
+                      "index": "not_analyzed"
+                  }
+               }
+            }
+         }
     }
   }
 }
