@@ -1,3 +1,30 @@
+PUT /sports/
+{
+   "mappings": {
+      "athlete": {
+         "properties": {
+            "birthdate": {
+               "type": "date",
+               "format": "dateOptionalTime"
+            },
+            "location": {
+               "type": "geo_point"
+            },
+            "name": {
+               "type": "string"
+            },
+            "rating": {
+               "type": "integer"
+            },
+            "sport": {
+               "type": "string"
+            }
+         }
+      }
+   }
+}
+
+
 POST  /sports/_bulk
 {"index":{"_index":"sports","_type":"athlete"}}
 {"name":"Michael", "birthdate":"1989-10-1", "sport":"Baseball", "rating": ["5", "4"],  "location":"46.22,-68.45"}
