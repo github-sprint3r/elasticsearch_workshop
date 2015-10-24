@@ -1,0 +1,24 @@
+discovery.zen.ping.multicast.enabled: false 
+discovery.zen.ping.unicast.hosts: ["host1", "host2:port"]
+
+
+cluster.name: elasticsearch_production
+node.name: elasticsearch_005_data
+
+
+path.data: /path/to/data1,/path/to/data2 
+path.logs: /path/to/logs
+path.plugins: /path/to/plugins
+
+
+action.destructive_requires_name: true
+
+
+export ES_HEAP_SIZE=10g
+./bin/elasticsearch -Xmx10g -Xms10g
+http://stackoverflow.com/questions/18132719/how-to-change-elasticsearch-max-memory-size
+
+
+indices.memory.index_buffer_size: 10%
+
+
