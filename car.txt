@@ -18,8 +18,9 @@ POST /cars/transactions/_bulk
     { "price" : 25000, "color" : "blue", "make" : "ford", "sold" : "2014-02-12" }
 
 // Best color
-GET /cars/_search?search_type=count
+GET /cars/_search
 {
+  "size": 0,
   "aggs": {
     "colors": {
       "terms": {
@@ -30,8 +31,9 @@ GET /cars/_search?search_type=count
 }
 
 //Average price in each color
-GET /cars/_search?search_type=count
+GET /cars/_search
 {
+  "size": 0,
   "aggs": {
     "colors": {
       "terms": {
@@ -50,8 +52,9 @@ GET /cars/_search?search_type=count
 }
 
 //Make in each color
-GET /cars/_search?search_type=count
+GET /cars/_search
 {
+  "size": 0,
   "aggs": {
     "colors": {
       "terms": {
@@ -74,8 +77,9 @@ GET /cars/_search?search_type=count
 }
 
 //Add min and max price in each make
-GET /cars/_search?search_type=count
+GET /cars/_search
 {
+  "size": 0,
   "aggs": {
     "colors": {
       "terms": {
@@ -111,8 +115,9 @@ GET /cars/_search?search_type=count
 
 
 //Show using histogram
-GET /cars/_search?search_type=count
+GET /cars/_search
 {
+  "size": 0,
   "aggs": {
     "price": {
       "histogram": {
@@ -125,8 +130,9 @@ GET /cars/_search?search_type=count
 
 
 //Top car in each range
-GET /cars/_search?search_type=count
+GET /cars/_search
 {
+  "size": 0,
   "aggs": {
     "price": {
       "histogram": {
@@ -147,8 +153,9 @@ GET /cars/_search?search_type=count
 
 
 //Car sold overtime
-GET /cars/_search?search_type=count
+GET /cars/_search
 {
+  "size": 0,
   "aggs": {
     "sold": {
       "date_histogram": {
@@ -160,8 +167,9 @@ GET /cars/_search?search_type=count
 }
 
 //Format date
-GET /cars/_search?search_type=count
+GET /cars/_search
 {
+  "size": 0,
   "aggs": {
     "sold": {
       "date_histogram": {
@@ -174,8 +182,9 @@ GET /cars/_search?search_type=count
 }
 
 //Return empty bucket
-GET /cars/_search?search_type=count
+GET /cars/_search
 {
+  "size": 0,
   "aggs": {
     "sold": {
       "date_histogram": {
@@ -189,8 +198,9 @@ GET /cars/_search?search_type=count
 }
 
 //Return empty bucket in 12 month
-GET /cars/_search?search_type=count
+GET /cars/_search
 {
+  "size": 0,
   "aggs": {
     "sold": {
       "date_histogram": {
@@ -206,14 +216,3 @@ GET /cars/_search?search_type=count
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
