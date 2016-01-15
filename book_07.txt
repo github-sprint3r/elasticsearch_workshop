@@ -23,6 +23,20 @@ GET /store/book/_search?search_type=count
   }
 }
 
+//Fix problem
+DELETE store
+
+PUT store
+
+PUT store/_mapping/book
+{
+  "properties" : {
+    "category" : {
+      "type" :    "string",
+      "index":    "not_analyzed"
+    }
+  }
+}
 
 //Stats aggregation
 GET /store/book/_search?search_type=count
