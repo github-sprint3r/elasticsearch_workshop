@@ -73,6 +73,28 @@ GET /store/book/_search
         }
 }
 
+GET store/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "title": "elasticsearch"
+          }
+        }
+      ], 
+      "filter": {
+        "range": {
+          "page": {
+            "gte": 700
+          }
+        }
+      }
+    }
+  }
+}
+
 
 GET /store/book/_search
 {
