@@ -11,6 +11,7 @@ GET /store/book/_search
 }
 
 
+//Deprecated
 //Show only aggregation section
 GET /store/book/_search?search_type=count
 {
@@ -22,6 +23,20 @@ GET /store/book/_search?search_type=count
     }
   }
 }
+
+//New solution
+GET /store/book/_search
+{
+  "size": 0,
+  "aggs": {
+    "all_book_title": {
+      "terms": {
+        "field": "category"
+      }
+    }
+  }
+}
+
 
 //Fix problem
 DELETE store
@@ -39,8 +54,9 @@ PUT store/_mapping/book
 }
 
 //Stats aggregation
-GET /store/book/_search?search_type=count
+GET /store/book/_search
 {
+  "size": 0,
   "aggs": {
     "all_book_title": {
       "stats": {
@@ -52,8 +68,9 @@ GET /store/book/_search?search_type=count
 
 
 //Stats aggregation :: price stat
-GET /store/book/_search?search_type=count
+GET /store/book/_search
 {
+  "size": 0,
   "aggs": {
     "price_stat": {
       "stats": {
@@ -63,8 +80,9 @@ GET /store/book/_search?search_type=count
   }
 }
 
-GET /store/book/_search?search_type=count
+GET /store/book/_search
 {
+  "size": 0,
   "aggs": {
     "price_stat": {
       "stats": {
@@ -75,8 +93,9 @@ GET /store/book/_search?search_type=count
 }
 
 //Multiple aggregation type
-GET /store/book/_search?search_type=count
+GET /store/book/_search
 {
+  "size": 0,
   "aggs": {
     "all_book_title": {
       "terms": {
@@ -92,8 +111,9 @@ GET /store/book/_search?search_type=count
 }
 
 //Missing aggregation
-GET /store/book/_search?search_type=count
+GET /store/book/_search
 {
+  "size": 0,
   "aggs": {
     "missing_field_tags": {
       "missing": {
@@ -106,8 +126,9 @@ GET /store/book/_search?search_type=count
 
 
 //Price range
-GET /store/book/_search?search_type=count
+GET /store/book/_search
 {
+  "size": 0,
   "aggs": {
     "price_range": {
       "range": {
@@ -130,8 +151,9 @@ GET /store/book/_search?search_type=count
 
 
 //Order data by category
-GET /store/book/_search?search_type=count
+GET /store/book/_search
 {
+  "size": 0,
   "aggs": {
     "all_book_title": {
       "terms": {
@@ -146,8 +168,9 @@ GET /store/book/_search?search_type=count
 
 
 //Multiple aggregation (bucket + metric)
-GET /store/book/_search?search_type=count
+GET /store/book/_search
 {
+  "size": 0,
   "aggs": {
     "all_book_title": {
       "terms": {
