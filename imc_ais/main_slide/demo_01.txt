@@ -1,0 +1,158 @@
+#### Full text query ####
+
+GET shop/book/_search
+{
+  "query": {
+    "match": {
+      "title": "elasticsearch book"
+    }
+  }
+}
+
+
+GET shop/book/_search
+{
+  "query": {
+    "match": {
+      "title": {
+        "query": "elasticsearch book",
+        "operator": "or"
+      }
+    }
+  }
+}
+
+GET shop/book/_search
+{
+  "query": {
+    "query_string": {
+      "default_field": "title",
+      "query": "elasticsearch OR book"
+    }
+  }
+}
+
+#### Term level query ####
+
+GET shop/book/_search
+{
+  "query": {
+    "term": {
+      "title": {
+        "value": "elasticsearch"
+      }
+    }
+  }
+}
+
+
+GET shop/book/_search
+{
+  "query": {
+    "term": {
+      "title": {
+        "value": "elasticsearch book"
+      }
+    }
+  }
+}
+
+#### Compound query ####
+GET shop/book/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "term": {
+            "title": {
+              "value": "elasticsearch"
+            }
+          }
+        }, 
+        {
+          "term": {
+            "title": {
+              "value": "book"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+GET shop/book/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        { "term": { "title" : "elasticsearch" } },
+        { "term": { "title" : "book" } },
+        { "term": { "title" : "sales" } }
+      ],
+      "minimum_should_match" : 2
+    }
+  }
+}
+
+GET shop/book/_search
+{
+  "query": {
+    "bool": {
+      "filter": {
+        "term": { "title" : "book" }
+      }, 
+      "should": [
+        { "term": { "title" : "elasticsearch" } },
+        { "term": { "title" : "book" } },
+        { "term": { "title" : "sales" } }
+      ],
+      "minimum_should_match" : "1"
+    }
+  }
+}
+
+#### Aggrgation ####
+GET shop/book/_search
+{
+  "aggs": {
+    "book_by_author": {
+      "terms": {
+        "field": "author_name"
+      }
+    }
+  }
+}
+
+
+GET shop/book/_search
+{
+  "size": 0,
+  "aggs": {
+    "book_by_author": {
+      "terms": {
+        "field": "author_name"
+      }
+    }
+  }
+}
+
+
+//Solution
+PUT shop
+{
+      "mappings": {
+            "book": {
+                  "properties": {
+                        "author_name": {
+                              "index": "not_analyzed",
+                              "type": "string"
+                        }
+                  }
+            }
+      }
+}
+
+
+

@@ -1,0 +1,69 @@
+PUT /shop/book/1
+    {
+        "title" : "Elasticsearch: The Definitive Guide",
+        "author_name" :  ["Clinton Gormley", "Zachary Tong"],
+        "category" : ["Online Searching", "Computer & Technology"],
+        "isbn" :  "978-1449358549",
+        "price" : 44.30,
+        "page" : 724,
+        "published_date" : "2015-01-15",
+        "active" : 1,
+        "short_description" : "A Distributed Real-Time Search and Analytics Engine",
+        "long_description" : "Learn how to use Elasticsearch, an open source, distributed, RESTful search engine built on top of Apache Lucene. Each chapter in this book tackles a particular facet of Elasticsearch with separate sections for beginners more advanced programmers. If you’re a beginner, advanced techniques are not required reading, but you can revisit them once you have a solid understanding of the basics."
+}
+
+PUT /shop/book/2
+    {
+        "title" : "Elasticsearch Server: Second Edition",
+        "author_name" :  ["Rafal Kuc", "Marek Rogoziński"],
+        "category" : ["Online Searching", "Computer & Technology"],
+        "isbn" :  "B00JXLF7AK",
+        "price" : 20.49,
+        "page" : 428,
+        "published_date" : "2015-01-15",
+        "active" : 1,
+        "short_description" : "Elasticsearch Server: Second Edition",
+        "long_description" : "We all want to find the information we are looking for. This demand brings more and more tools that try to make the full-text search topic easier to understand and introduce to applications. ElasticSearch is one of those tools. It is a cluster- and cloud-aware, high-performance, open source search server. It is written in Java and runs as a standalone full-text search server. ElasticSearch uses the Lucene Java search library at its core for full-text indexing and search, and has REST-like HTTP and JSON APIs that make it easy to use from virtually any programming language. ElasticSearch is a fast, very scalable, and easy-to-use search engine that is enjoyable to use and work with."
+}
+
+PUT /shop/book/3
+    {
+        "title" : "ElasticSearch Cookbook",
+        "author_name" :  ["Alberto Paro"],
+        "category" : ["Online Searching", "Computer & Technology"],
+        "isbn" :  "B00HK3VPG8",
+        "price" : 22.44,
+        "page" : 424,
+        "published_date" : "2015-01-16",
+        "active" : 1,
+        "short_description" : "ElasticSearch Cookbook",
+        "long_description" : "ElasticSearch is one of the most promising NoSQL technologies available and is built to provide a scalable search solution with built-in support for near real-time search and multi-tenancy."
+}
+
+PUT /shop/book/4
+    {
+        "title" : "Elasticsearch in Action",
+        "author_name" :  ["Alberto Paro"],
+        "category" : ["Computer & Technology", "Java Programming"],
+        "isbn" :  "978-1617291623",
+        "price" : 36.66,
+        "page" : 400,
+        "published_date" : "2015-01-17",
+        "active" : 1,
+        "short_description" : "Elasticsearch in Action",
+        "long_description" : "Elasticsearch makes it easy to add efficient and scalable searches to enterprise applications. Busy administrators and developers love this open source real-time search and analytics engine because they can simply install it, make a few tweaks, and go on with their work. Elasticsearch is miles deep, so once it's up and running, it can be used to build nearly any custom search solution imaginable."
+}
+
+PUT /shop/book/5
+    {
+        "title" : "The Logstash Book",
+        "author_name" :  ["Alberto Paro", "James Turnbull"],
+        "category" : ["Computer & Technology", "Java Programming"],
+        "isbn" :  "B00B9JQTCO",
+        "price" : 9.99,
+        "page" : 262,
+        "published_date" : "2015-01-17",
+        "active" : 1,
+        "short_description" : "The Logstash Book",
+        "long_description" : "Updated for Logstash 1.4! A new book designed for SysAdmins, Operations staff, Developers and DevOps who are interested in deploying a log management solution using the open source tool Logstash. In this book we will walk you through installing, deploying, managing and extending Logstash. We are going to do that by introducing you to Example.com, where you are going to start a new job as one of its SysAdmins. The first project you will be in charge of is developing its new log management solution. "
+}

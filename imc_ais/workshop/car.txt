@@ -1,0 +1,218 @@
+//Data
+POST /cars/transactions/_bulk
+    { "index": {}}
+    { "price" : 10000, "color" : "red", "make" : "honda", "sold" : "2014-10-28" }
+    { "index": {}}
+    { "price" : 20000, "color" : "red", "make" : "honda", "sold" : "2014-11-05" }
+    { "index": {}}
+    { "price" : 30000, "color" : "green", "make" : "ford", "sold" : "2014-05-18" }
+    { "index": {}}
+    { "price" : 15000, "color" : "blue", "make" : "toyota", "sold" : "2014-07-02" }
+    { "index": {}}
+    { "price" : 12000, "color" : "green", "make" : "toyota", "sold" : "2014-08-19" }
+    { "index": {}}
+    { "price" : 20000, "color" : "red", "make" : "honda", "sold" : "2014-11-05" }
+    { "index": {}}
+    { "price" : 80000, "color" : "red", "make" : "bmw", "sold" : "2014-01-01" }
+    { "index": {}}
+    { "price" : 25000, "color" : "blue", "make" : "ford", "sold" : "2014-02-12" }
+
+// Best color
+GET /cars/_search
+{
+  "size": 0,
+  "aggs": {
+    "colors": {
+      "terms": {
+        "field": "color"
+      }
+    }
+  }
+}
+
+//Average price in each color
+GET /cars/_search
+{
+  "size": 0,
+  "aggs": {
+    "colors": {
+      "terms": {
+        "field": "color"
+      }
+      ,
+      "aggs": {
+        "avg_price": {
+          "avg": {
+            "field": "price"
+          }
+        }
+      }
+    }
+  }
+}
+
+//Make in each color
+GET /cars/_search
+{
+  "size": 0,
+  "aggs": {
+    "colors": {
+      "terms": {
+        "field": "color"
+      },
+      "aggs": {
+        "avg_price": {
+          "avg": {
+            "field": "price"
+          }
+        },
+        "make": {
+          "terms": {
+            "field": "make"
+          }
+        }
+      }
+    }
+  }
+}
+
+//Add min and max price in each make
+GET /cars/_search
+{
+  "size": 0,
+  "aggs": {
+    "colors": {
+      "terms": {
+        "field": "color"
+      },
+      "aggs": {
+        "avg_price": {
+          "avg": {
+            "field": "price"
+          }
+        },
+        "make": {
+          "terms": {
+            "field": "make"
+          },
+          "aggs": {
+            "min_price": {
+              "min": {
+                "field": "price"
+              }
+            },
+            "max_price" : {
+              "max": {
+                "field": "price"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//Show using histogram
+GET /cars/_search
+{
+  "size": 0,
+  "aggs": {
+    "price": {
+      "histogram": {
+        "field": "price",
+        "interval": 20000
+      }
+    }
+  }
+}
+
+
+//Top car in each range
+GET /cars/_search
+{
+  "size": 0,
+  "aggs": {
+    "price": {
+      "histogram": {
+        "field": "price",
+        "interval": 20000
+      },
+      "aggs": {
+        "make": {
+          "terms": {
+            "field": "make",
+            "size": 1
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//Car sold overtime
+GET /cars/_search
+{
+  "size": 0,
+  "aggs": {
+    "sold": {
+      "date_histogram": {
+        "field": "sold",
+        "interval": "month"
+      }
+    }
+  }
+}
+
+//Format date
+GET /cars/_search
+{
+  "size": 0,
+  "aggs": {
+    "sold": {
+      "date_histogram": {
+        "field": "sold",
+        "interval": "month",
+        "format": "yyyy-MM-dd"
+      }
+    }
+  }
+}
+
+//Return empty bucket
+GET /cars/_search
+{
+  "size": 0,
+  "aggs": {
+    "sold": {
+      "date_histogram": {
+        "field": "sold",
+        "interval": "month",
+        "format": "yyyy-MM-dd",
+        "min_doc_count": 0
+      }
+    }
+  }
+}
+
+//Return empty bucket in 12 month
+GET /cars/_search
+{
+  "size": 0,
+  "aggs": {
+    "sold": {
+      "date_histogram": {
+        "field": "sold",
+        "interval": "month",
+        "format": "yyyy-MM-dd",
+        "min_doc_count": 0,
+        "extended_bounds" : {
+          "min" : "2014-01-01",
+          "max" : "2014-12-31"
+        }
+      }
+    }
+  }
+}
